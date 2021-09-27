@@ -1,0 +1,31 @@
+{	"model":{"Name":"resnet18", 
+			"Criterion":"cross_entropy", 
+			"Optimizer":"SGD", 
+			"Learn_Rate":0.0001,
+			"Momentum": 0.95, 
+			"WeightDecay": 0.0001,
+			"NumClasses": 10},
+
+	"traindata":{"Trainpath":"/CIFAR10/archive/cifar10_raw/images/train",
+			"Transforms":[			
+			{"type": "RandomVerticalFlip", "percentage": 0.5}, 
+			{"type": "RandomHorizonalFlip", "percentage": 0.5}, 
+			{"type": "ToGrayScale"},
+			{"type": "ToTensor"},
+			{"type": "Normalize", "mean":[0.5], "std":[0.5]}],
+			"Shuffle" : true,
+			"Batch_Size":64},
+
+	"testdata":{"Testpath":"/CIFAR10/archive/cifar10_raw/images/test",
+				"Transforms":[
+				{"type": "ToGrayScale"},
+				{"type": "ToTensor"}], 
+				"Shuffle" : false,
+				"Batch_Size":64},
+
+	"options":{"CustImgDS":[{"enable": false},{"trncsvfile":"path/filename","tstcsvfile":"path/filename"}], 
+				"Early_Stop":7,
+				"Workers" : 1, 
+				"Save_Model_Dir":"C:/SavedModels",
+				"Epochs": 15}
+}
